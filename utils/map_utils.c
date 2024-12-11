@@ -13,6 +13,8 @@
 #include "../inc/so_long.h"
 
 void    count_rows(t_game *game);
+void  fill_map(int fd, t_game *game);
+void    count_columns_per_row(t_game *game, int row);
 
 void    set_map_values(t_game *game)
 {
@@ -30,10 +32,8 @@ void    set_map_values(t_game *game)
 		ft_printf("Error\nThere is an issue with the map file!\n");
 		return ;
     }
-    game->map = malloc(sizeof(char *) * game->rows);
-    if (!game->map)
-        return ;
     fill_map(game);
+    game->columns = count_columns_per_row(game, 1);
     close(fd);
 }
 
@@ -60,4 +60,24 @@ int    count_rows(t_game *game)
     close(fd);
     free(buff);
     return (rows);
+}
+
+void  fill_map(int fd, t_game *game)
+{
+  int i;
+  
+  game->map = malloc(sizeof(char *) * game->rows);
+  if (!game->map)
+    return ;
+  i = 0;
+  while (i < game->rows)
+    game->map[i++] = get_next_line(fd);
+}
+
+void    count_columns_per_row(t_game *game, int row);
+{
+  if (game->map[row - 1][ft_strlen(game->map[row - 1]) - 1] == '\n')
+    return (ft_strlen(game->map[row - 1]);
+  else
+    return (ft_strlen(game->map[row - 1]) - 1);
 }

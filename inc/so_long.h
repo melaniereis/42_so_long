@@ -45,7 +45,7 @@ typedef struct s_game
 	int		moves;
 	int		rows;
 	int		columns;
-	int		collect;
+	int		collectibles;
 	int		coin_bag;
 	int		collect_check;
 	int		exit_check;

@@ -28,9 +28,10 @@ int	main(int argc, char **arvv)
 		}
 		game->map_name = argv[1];
 		set_map_values(game);
-		if (!is_map_valid(game)
-			|| !is_map_characters_ok(game))
+		if (!is_map_valid(game)))
 			ft_quit_game(game);
+		else
+			set_game_values(game);
 		open_window(game);
 	}
 }

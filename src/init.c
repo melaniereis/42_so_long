@@ -35,7 +35,7 @@ static void    init_game(t_game *game)
 	game->moves = 0;
 	game->rows = 0;
 	game->columns = 0;
-	game->collect = 0;
+	game->collectibles = 0;
 	game->coin_bag = 0;
 	game->collect_check = 0;
 	game->exit_check = 0;
