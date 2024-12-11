@@ -40,9 +40,9 @@ SPARKLES = ✨
 
 # Directory structure
 BUILD_PATH = .build
-SRC_PATH = .
-BONUS_PATH = .
-INC_PATH = .
+SRC_PATH = src
+BONUS_PATH = src_bonus
+INC_PATH = inc
 HEADERS = ${INC_PATH}/push_swap.h
 
 LIBFT_PATH = libs/libft
