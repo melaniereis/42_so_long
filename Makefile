@@ -41,19 +41,20 @@ SPARKLES = ✨
 # Directory structure
 BUILD_PATH = .build
 SRC_PATH = src
+UTIL_PATH = utils
 BONUS_PATH = src_bonus
 INC_PATH = inc
-HEADERS = ${INC_PATH}/push_swap.h
+HEADERS = ${INC_PATH}/so_long.h
 
 LIBFT_PATH = libs/libft
 LIBFT_ARC = ${LIBFT_PATH}/libft.a
 
 MINILIBX_PATH = libs/minilibx-linux
-MINILIBX = ${LIBFT_PATH}/libmlx_Linux.a
+MINILIBX = ${MINILIBX_PATH}/libmlx_Linux.a
 
 # Source files for main library
-SRCS = ${addprefix ${SRC_PATH}/, }
-
+SRCS = ${addprefix ${SRC_PATH}/, main.c init.c}
+SRCS += ${addprefix ${UTIL_PATH}/, map_utils.c map_validation.c}
 # Object files derived from source files
 OBJS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS:.c=.o}}}
 OBJS_BONUS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS_BONUS:.c=.o}}}
@@ -65,7 +66,7 @@ OBJS_BONUS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS_BONUS:.c=.o}}}
 CC = cc                           # Compiler to use
 CCFLAGS = -Wall -Wextra -Werror -g # Compiler flags for warnings/errors/debugging
 LDFLAGS = -L${LIBFT_PATH} -lft
-MLXFLAGS = -L ./libs/minilibx-linux -lm -Ilmlx -lXext -lX11
+MLXFLAGS = -L${MINILIBX_PATH} -lmlx_Linux -lXext -lX11 -lm
 
 AR = ar rcs                       # Archive command to create static libraries
 RM = rm -fr                       # Command to remove files/directories forcefully
@@ -85,11 +86,11 @@ VALGRIND_FLAGS = --leak-check=full --show-leak-kinds=all --track-origins=yes
 
 all: deps ${NAME}                 
 
-${NAME}: ${BUILD_PATH} ${OBJS} ${LIBFT_ARC}
+${NAME}: ${BUILD_PATH} ${OBJS} ${LIBFT_ARC} ${MINILIBX}
 	@printf "${CYAN}${DIM}Compiling main.c for running the program...${RESET}\n"
-	@${CC} ${CCFLAGS} ${OBJS} ${LDFLAGS} ${MLXFLAGS} -o ${NAME}
+	@${CC} ${CCFLAGS} ${OBJS} -o ${NAME} ${MLXFLAGS} ${LDFLAGS} 
 	@printf "${GREEN}${BOLD}${CHECK} so_long executable compiled successfully!${RESET}\n"
-	@printf "${YELLOW}${BOLD}To run program type: ./push_swap followed by the name of the map.${RESET}\n"
+	@printf "${YELLOW}${BOLD}To run program type: ./so_long followed by the name of the map.${RESET}\n"
 
 ${BUILD_PATH}:
 	@printf "\n${BLUE}${BOLD}Creating build directory...${RESET}\n"
@@ -107,6 +108,10 @@ ${MINILIBX}: deps_mlx
 	@printf "${BLUE}${BOLD}${BUILD} ${WHITE}${MINILIBX}${GREEN} compiled! ${RESET}\n"
 
 ${BUILD_PATH}/%.o: ${SRC_PATH}/%.c ${HEADERS} | ${BUILD_PATH}
+	@printf "${CYAN}${DIM}Compiling: ${WHITE}%-30s${RESET}\r" ${notdir $<}
+	@${CC} ${CCFLAGS} ${INC} -c $< -o $@
+
+${BUILD_PATH}/%.o: ${UTIL_PATH}/%.c ${HEADERS} | ${BUILD_PATH}
 	@printf "${CYAN}${DIM}Compiling: ${WHITE}%-30s${RESET}\r" ${notdir $<}
 	@${CC} ${CCFLAGS} ${INC} -c $< -o $@
 
@@ -129,7 +134,7 @@ deps_mlx:
 
 get_minilibx:
 	@printf "${CYAN}${BOLD}${BOOK} Getting MiniLibX..${RESET}\n"
-	@git clone git@github.com:42Paris/minilibx-linux.git ${MINILIBX_PATH}
+	@git clone git@github.com:melaniereis/minilibx-linux.git ${MINILIBX_PATH}
 	@printf "${GREEN}${BOLD}${ROCKET} ${WHITE}${MINILIBX}${GREEN} successfully downloaded!${RESET}\n"
 
 
@@ -189,7 +194,8 @@ fclean: clean               # Fully clean up by removing executables and build d
 	@printf "${YELLOW}${BOLD}${CLEAN} Removing executable, libft.a and build files...${RESET}\n"
 	@${RM} ${NAME}
 	@${RM} ${BUILD_PATH}
-##	@${RM} ${LIBFT_PATH}
+	@${RM} ${LIBFT_PATH}
+	@${RM} ${MINILIBX_PATH}
 	@printf "${GREEN}${BOLD}${CHECK} All files cleaned!${RESET}\n"
 
 re: fclean all          # Rebuild everything from scratch 

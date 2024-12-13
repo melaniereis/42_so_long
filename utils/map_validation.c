@@ -173,5 +173,8 @@ int are_char_in_map_valid(t_game *game)
 
 int is_there_path(t_game *game)
 {
+	int	i;
 
+	i = game->rows;
+	return (1);
 }

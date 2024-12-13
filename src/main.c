@@ -12,7 +12,7 @@
 
 #include "../inc/so_long.h"
 
-int	main(int argc, char **arvv)
+int	main(int argc, char **argv)
 {
 	t_game	*game;
 	int		fd;
@@ -24,14 +24,14 @@ int	main(int argc, char **arvv)
 		if (fd == -1)
 		{
 			ft_printf("Error\n There was a problem while opening the map file!\n");
-			return (ft_quit_game(game));
+			//return (ft_quit_game(game));
 		}
 		game->map_name = argv[1];
 		set_map_values(game);
-		if (!is_map_valid(game)))
-			ft_quit_game(game);
-		else
-			set_game_values(game);
-		open_window(game);
+		if (!is_map_valid(game))
+			printf("Problem\n");//ft_quit_game(game);
+	//	else
+			//set_game_values(game);
+		//open_window(game);
 	}
 }

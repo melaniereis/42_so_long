@@ -39,21 +39,21 @@ static void    init_game(t_game *game)
 	game->coin_bag = 0;
 	game->collect_check = 0;
 	game->exit_check = 0;
-    game->player_position->x = 0;
-    game->player_position->y = 0;
-	game->coordinates->x = 0;
-    game->coordinates->y = 0;
+    game->player_position.x = 0;
+    game->player_position.y = 0;
+	game->coordinates.x = 0;
+    game->coordinates.y = 0;
 }
 
 static void    init_window(t_game *game)
 {
     game->mlx_ptr = mlx_init();
 	game->win_ptr = NULL;
-	game->img->mlx_img = NULL;
-    game->img->addr = 0;
-    game->img->bpp = 0;
-    game->img->line_len = 0;
-    game->img->endian = 0;
-	game->img_size->x = 0;
-    game->img_size->y = 0;
+	game->img.mlx_img = NULL;
+    game->img.addr = 0;
+    game->img.bpp = 0;
+    game->img.line_len = 0;
+    game->img.endian = 0;
+	game->img_size.x = 0;
+    game->img_size.y = 0;
 }
