@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validation.c                                    :+:      :+:    :+:   */
+/*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:24:46 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/11 11:25:51 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/13 14:43:49 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,27 @@ int is_map_valid(t_game *game)
         ft_printf ("Error\nThere is a problem with Exit or Player!\n");
 		return (0);
     }
-    if (!is_there_collectible(game))
+    else if (!is_there_collectible(game))
     {
         ft_printf ("Error\nThere is no Collectibles!\n");
 		return (0);
     }
-    if (!is_map_rectangular(game))
+    else if (!is_map_rectangular(game))
     {
         ft_printf ("Error\nMap is not rectangular!\n");
 		return (0);
     }
-    if (!are_there_walls(game))
+    else if (!are_there_walls(game))
     {
         ft_printf ("Error\nMap's walls are incorret!\n");
 		return (0);
     }
-    if (!are_char_in_map_valid(game))
+    else if (!are_char_in_map_valid(game))
     {
         ft_printf ("Error\nInvalid character in map detected!\n");
 		return (0);
     }
-    if (!is_there_path(game))
+    else if (!is_there_path(game))
     {
         ft_printf ("Error\nPlayer can't get all collectibles and go to exit!\n");
 		return (0);
@@ -169,12 +169,4 @@ int are_char_in_map_valid(t_game *game)
         y++;
     }
     return (1);
-}
-
-int is_there_path(t_game *game)
-{
-	int	i;
-
-	i = game->rows;
-	return (1);
 }

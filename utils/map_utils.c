@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_utils.c                                         :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:08:46 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/11 11:25:51 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/13 16:15:32 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,22 +62,32 @@ int    count_rows(t_game *game)
     return (rows);
 }
 
-void  fill_map(int fd, t_game *game)
+void fill_map(int fd, t_game *game)
 {
-  int i;
-  
-  game->map = malloc(sizeof(char *) * game->rows);
-  if (!game->map)
-    return ;
-  i = 0;
-  while (i < game->rows)
-    game->map[i++] = get_next_line(fd);
+    int i;
+    char *line;
+
+    game->map = malloc(sizeof(char *) * game->rows);
+    game->map_copy = malloc(sizeof(char *) * game->rows);
+    if (!game->map || !game->map_copy)
+        return;
+
+    i = 0;
+    while (i < game->rows)
+    {
+        line = get_next_line(fd);
+        if (line)
+        {
+            if (line[ft_strlen(line) - 1] == '\n')
+                line[ft_strlen(line) - 1] = '\0';
+            game->map[i] = line;
+            game->map_copy[i] = ft_strdup(line); // make a copy of the line for map_copy
+        }
+        i++;
+    }
 }
 
-int    count_columns_per_row(t_game *game, int row)
+int	count_columns_per_row(t_game *game, int row)
 {
-  if (game->map[row - 1][ft_strlen(game->map[row - 1]) - 1] == '\n')
-    return (ft_strlen(game->map[row - 1]));
-  else
-    return (ft_strlen(game->map[row - 1]) - 1);
+	return (ft_strlen(game->map[row - 1]));
 }

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:24:46 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/11 11:25:51 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/13 14:39:36 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_game
 t_game  *init(void);
 int    count_rows(t_game *game);
 void  fill_map(int fd, t_game *game);
+void  set_map_copy(int fd, t_game *game);
 int    count_columns_per_row(t_game *game, int row);
 void    set_map_values(t_game *game);
 int is_map_name_ok(char *map_name);
