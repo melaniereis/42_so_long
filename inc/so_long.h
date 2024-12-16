@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:24:46 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/16 14:47:26 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:27:57 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,14 @@ typedef struct s_img
 	int		bpp;
 	int		line_len;
 	int		endian;
-}			t_img;open_window
+}			t_img;
+
+typedef struct s_game
+{
+	char	**map;
+	char	**map_copy;
+	char	*map_name;
+	int		moves;
 	int		rows;
 	int		columns;
 	int		collectibles;
