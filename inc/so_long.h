@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:24:46 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/13 14:39:36 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/16 14:47:26 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <unistd.h>
 # include <stdarg.h>
 
+# define BITS 48
+
 typedef struct s_point
 {
 	int		x;
@@ -34,15 +36,7 @@ typedef struct s_img
 	int		bpp;
 	int		line_len;
 	int		endian;
-}			t_img;
-
-typedef struct s_game
-{
-	char	**map;
-	char	**map_copy;
-	char	*map_name;
-
-	int		moves;
+}			t_img;open_window
 	int		rows;
 	int		columns;
 	int		collectibles;
@@ -75,5 +69,6 @@ int is_map_rectangular(t_game *game);
 int are_there_walls(t_game *game);
 int are_char_in_map_valid(t_game *game);
 int is_there_path(t_game *game);
+void	start_game(t_game *game);
 
 #endif

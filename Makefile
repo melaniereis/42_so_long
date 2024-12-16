@@ -53,7 +53,7 @@ MINILIBX_PATH = libs/minilibx-linux
 MINILIBX = ${MINILIBX_PATH}/libmlx_Linux.a
 
 # Source files for main library
-SRCS = ${addprefix ${SRC_PATH}/, main.c init.c}
+SRCS = ${addprefix ${SRC_PATH}/, main.c init.c start_game.c}
 SRCS += ${addprefix ${UTIL_PATH}/, map_utils.c map_validation.c \
 		map_validation_path.c}
 # Object files derived from source files

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:38:34 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/13 14:40:47 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/13 17:11:18 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	flood_fill(t_game *game, int x, int y)
 	char **map_copy;
 
 	if (x < 0 || x >= game->columns || y < 0 || y >= game->rows)
-        	return ;
+			return ;
 	map_copy = game->map_copy;
 	if (map_copy[y][x] == '1' || map_copy[y][x] == 'F')
 		return ;

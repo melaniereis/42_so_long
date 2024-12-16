@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:32:43 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/13 14:59:51 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/16 14:45:31 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int	main(int argc, char **argv)
 		set_map_values(game);
 		if (!is_map_valid(game))
 			printf("Problem\n");//ft_quit_game(game);
-	//	else
-			//set_game_values(game);
-		//open_window(game);
+		start_game(game);
 	}
 }
