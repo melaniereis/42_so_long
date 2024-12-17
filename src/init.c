@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:32:43 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/13 14:36:40 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/17 12:19:05 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static void    init_game(t_game *game)
     game->player_position.y = 0;
 	game->coordinates.x = 0;
     game->coordinates.y = 0;
+	game->santa_counter = 1;
+    game->gift_counter = 1;
 }
 
 static void    init_window(t_game *game)

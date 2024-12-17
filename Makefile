@@ -53,9 +53,10 @@ MINILIBX_PATH = libs/minilibx-linux
 MINILIBX = ${MINILIBX_PATH}/libmlx_Linux.a
 
 # Source files for main library
-SRCS = ${addprefix ${SRC_PATH}/, main.c init.c start_game.c}
+SRCS = ${addprefix ${SRC_PATH}/, main.c init.c start_game.c key_handler.c \
+		moves.c}
 SRCS += ${addprefix ${UTIL_PATH}/, map_utils.c map_validation.c \
-		map_validation_path.c}
+		map_validation_path.c quit_and_frees.c}
 # Object files derived from source files
 OBJS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS:.c=.o}}}
 OBJS_BONUS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS_BONUS:.c=.o}}}

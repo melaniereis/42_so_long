@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:24:46 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/13 14:43:49 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/17 12:52:03 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,40 @@
 
 int is_map_name_ok(char *map_name)
 {
-    if (ft_strncmp(map_name + ft_strlen(map_name) - 4, ".ber", 4) != 0)
+    size_t len = ft_strlen(map_name);
+    char *dot_position;
+
+	printf("len is: %zu\n", len);
+    // Check if the filename is exactly ".ber" or too short
+    if (len <= 4 || ft_strncmp(map_name, ".ber", 4) == 0)
     {
-        ft_printf("Error\nMap extension is wrong!\n");
-		return (0);
+        ft_printf("Error\nInvalid map filename! It should have a name before '.ber'\n");
+        return (0);
     }
+
+    // Check if the filename ends with ".ber"
+    if (ft_strncmp(map_name + len - 4, ".ber", 4) != 0)
+    {
+        ft_printf("Error\nMap extension is wrong! It should end with '.ber'\n");
+        return (0);
+    }
+
+    // Find the position of the first '.' in the filename
+    dot_position = ft_strchr(map_name, '.');
+
+    // Check if the first '.' is not the one in ".ber" at the end
+    if (dot_position != map_name + len - 4)
+    {
+        ft_printf("Error\nInvalid map filename! It should only have one '.ber' at the end\n");
+        return (0);
+    }
+
     return (1);
 }
+
+
+
+
 
 int is_map_valid(t_game *game)
 {

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:08:46 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/13 16:15:32 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/17 15:05:04 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void    set_map_values(t_game *game)
     if (game->rows == 0)
     {
         ft_printf("Error\nMap is empty!\n");
-		//ft_quit_game(game);
+		ft_quit_game(game);
     }
     fd = open(game->map_name, O_RDONLY);
     if (fd == -1)
