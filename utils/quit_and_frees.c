@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 09:05:26 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/17 09:24:59 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/17 15:55:07 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,9 @@ static void	free_map(char **map, t_game *game)
 	int	i;
 
 	i = 0;
-	if (!map[0])
-	{
-		free (game->map);
+	if (!map)
 		return ;
-	}
-	while (i < game->rows - 1)
+	while (i < game->rows)
 		free(game->map[i++]);
 	free(game->map);
 }
@@ -41,12 +38,9 @@ static void	free_map_copy(char **map, t_game *game)
 	int	i;
 
 	i = 0;
-	if (!map[0])
-	{
-		free (game->map_copy);
+	if (!map)
 		return ;
-	}
-	while (i < game->rows - 1)
+	while (i < game->rows)
 		free(game->map_copy[i++]);
 	free(game->map_copy);
 }

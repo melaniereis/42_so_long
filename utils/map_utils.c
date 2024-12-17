@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:08:46 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/17 15:05:04 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/17 15:50:27 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void fill_map(int fd, t_game *game)
                 line[ft_strlen(line) - 1] = '\0';
             game->map[i] = line;
             game->map_copy[i] = ft_strdup(line); // make a copy of the line for map_copy
-        }
+		}
         i++;
     }
 }
