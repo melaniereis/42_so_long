@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:24:46 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/17 17:09:33 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/19 11:24:26 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ int are_char_in_map_valid(t_game *game)
             if (game->map[y][x] != 'E' && game->map[y][x] != 'P'
                && game->map[y][x] != 'C' && game->map[y][x] != '1'
                && game->map[y][x] != '0' && game->map[y][x] != '\0'
-               && game->map[y][x] != '\n')
+               && game->map[y][x] != '\n' && game->map[y][x] != 'K')
                 return (0);
             x++;
         }

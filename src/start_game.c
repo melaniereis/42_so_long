@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 17:08:58 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/17 12:22:52 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/19 10:26:01 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,11 @@ void	display_textures(t_game *game, int y, int x)
 	}
 	else if (position == 'E')
 		set_texture(game, EXIT, y * BITS, x * BITS);
+	else if (position == 'K')
+	{
+		set_texture(game, GRINCH_1, y * BITS, x * BITS);
+		game->grinch_counter = ((game->grinch_counter) % 5) + 1;
+	}
 	else if (position == 'P')
 		set_texture(game, PLAYER_FRONT_1, y * BITS, x * BITS);
 }
@@ -127,6 +132,47 @@ void	update_exit_texture(t_game *game)
 		{
 			if (game->map[game->coordinates.y][game->coordinates.x] == 'E')
 				set_texture(game, EXIT_SANTA, game->coordinates.y * BITS, game->coordinates.x * BITS);
+			game->coordinates.x += 1;
+		}
+		game->coordinates.y += 1;
+	}
+}
+void	update_grinch_texture(t_game *game)
+{
+	game->coordinates.y = 0;
+	while (game->coordinates.y < game->rows)
+	{
+		game->coordinates.x = 0;
+		while (game->coordinates.x < game->columns)
+		{
+			if (game->map[game->coordinates.y][game->coordinates.x] == 'K')
+			{
+				if (game->grinch_counter == 1)
+				{
+					set_texture(game, GRINCH_1, game->coordinates.y * BITS, game->coordinates.x * BITS);
+					game->grinch_counter = ((game->grinch_counter) % 5) + 1;
+				}
+				else if (game->grinch_counter == 2)
+				{
+					set_texture(game, GRINCH_2, game->coordinates.y * BITS, game->coordinates.x * BITS);
+					game->grinch_counter = ((game->grinch_counter) % 5) + 1;
+				}
+				else if (game->grinch_counter == 3)
+				{
+					set_texture(game, GRINCH_3, game->coordinates.y * BITS, game->coordinates.x * BITS);
+					game->grinch_counter = ((game->grinch_counter) % 5) + 1;
+				}
+				else if (game->grinch_counter == 4)
+				{
+					set_texture(game, GRINCH_4, game->coordinates.y * BITS, game->coordinates.x * BITS);
+					game->grinch_counter = ((game->grinch_counter) % 5) + 1;
+				}
+				else if (game->grinch_counter == 5)
+				{
+					set_texture(game, GRINCH_5, game->coordinates.y * BITS, game->coordinates.x * BITS);
+					game->grinch_counter = ((game->grinch_counter) % 5) + 1;
+				}
+			}
 			game->coordinates.x += 1;
 		}
 		game->coordinates.y += 1;

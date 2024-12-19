@@ -127,7 +127,8 @@ deps: deps_mlx
 
 get_libft:
 	@printf "${CYAN}${BOLD}${BOOK} Getting Libft..${RESET}\n"
-	@git clone git@github.com:melaniereis/libft.git ${LIBFT_PATH}
+	@git clone https://github.com/melaniereis/libft.git ${LIBFT_PATH}
+	@git pull
 	@printf "${GREEN}${BOLD}${ROCKET} ${WHITE}${LIBFT_ARC}${GREEN} successfully downloaded!${RESET}\n"
 
 deps_mlx:
@@ -196,6 +197,7 @@ fclean: clean               # Fully clean up by removing executables and build d
 	@printf "${YELLOW}${BOLD}${CLEAN} Removing executable, libft.a and build files...${RESET}\n"
 	@${RM} ${NAME}
 	@${RM} ${BUILD_PATH}
+# @make fclean -C ${LIBFT_PATH}
 	@${RM} ${LIBFT_PATH}
 	@${RM} ${MINILIBX_PATH}
 	@printf "${GREEN}${BOLD}${CHECK} All files cleaned!${RESET}\n"

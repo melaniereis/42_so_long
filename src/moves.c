@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 09:00:48 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/17 12:46:26 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/19 10:20:03 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	move_conditions(t_game *game)
 {
+	update_grinch_texture(game);
 	if (game->map[game->player_position.y][game->player_position.x] == 'C')
 	{
 		game->map[game->player_position.y][game->player_position.x] = '0';
@@ -40,6 +41,12 @@ void	move_up(t_game *game)
 			return ;
 		game->player_position.y -= 1;
 		move_conditions(game);
+		return ;
+	}
+	if (game->map[game->player_position.y - 1][game->player_position.x] == 'K')
+	{
+		ft_printf("\nTHE GRINCH STOLE THE GIFTS! CHRISTMAS IS RUINED! YOU LOST!\n\n");
+		ft_quit_game(game);
 		return ;
 	}
 	if (game->santa_counter == 1)
@@ -78,6 +85,12 @@ void	move_down(t_game *game)
 		move_conditions(game);
 		return ;
 	}
+	if (game->map[game->player_position.y + 1][game->player_position.x] == 'K')
+	{
+		ft_printf("\nTHE GRINCH STOLE THE GIFTS! CHRISTMAS IS RUINED! YOU LOST!\n\n");
+		ft_quit_game(game);
+		return ;
+	}
 	if (game->santa_counter == 1)
 	{
 		set_texture(game, PLAYER_FRONT_2, (game->player_position.y + 1) * BITS, (game->player_position.x) * BITS);
@@ -114,6 +127,12 @@ void	move_right(t_game *game)
 		move_conditions(game);
 		return ;
 	}
+	if (game->map[game->player_position.y][game->player_position.x + 1] == 'K')
+	{
+		ft_printf("\nTHE GRINCH STOLE THE GIFTS! CHRISTMAS IS RUINED! YOU LOST!\n\n");
+		ft_quit_game(game);
+		return ;
+	}
 	if (game->santa_counter == 1)
 	{
 		set_texture(game, PLAYER_RIGHT_1, (game->player_position.y) * BITS, (game->player_position.x + 1) * BITS);
@@ -148,6 +167,12 @@ void	move_left(t_game *game)
 		set_texture(game, EXIT_SANTA, (game->player_position.y) * BITS, (game->player_position.x - 1) * BITS);
 		game->player_position.x -= 1;
 		move_conditions(game);
+		return ;
+	}
+	if (game->map[game->player_position.y][game->player_position.x - 1] == 'K')
+	{
+		ft_printf("\nTHE GRINCH STOLE THE GIFTS! CHRISTMAS IS RUINED! YOU LOST!\n\n");
+		ft_quit_game(game);
 		return ;
 	}
 	if (game->santa_counter == 1)

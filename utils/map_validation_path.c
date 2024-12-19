@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:38:34 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/17 17:15:53 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:58:05 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,12 @@ int	is_there_path(t_game *game)
 {
 	set_player_position(game);
 	flood_fill(game, game->player_position.x, game->player_position.y);
-	if (game->exit_check != 1 || game->collect_check != game->collectibles)
+	for(int i = 0; i < game->rows -1; i++)
+	{
+		printf("%s\n", game->map_copy[i]);
+	}
+	printf("game->exit_check: %d\n", game->exit_check);
+	if (game->exit_check == 0 || game->collect_check != game->collectibles)
 		return (0);
 	return (1);
 }
@@ -53,16 +58,17 @@ void	flood_fill(t_game *game, int x, int y)
 	if (x < 0 || x >= game->columns || y < 0 || y >= game->rows)
 			return ;
 	map_copy = game->map_copy;
-	if (map_copy[y][x] == '1' || map_copy[y][x] == 'F')
+	if (map_copy[y][x] == '1' || map_copy[y][x] == 'F'|| map_copy[y][x] == 'K')
 		return ;
 	if (map_copy[y][x] == 'E')
 	{
 		if (game->collect_check == game->collectibles)
 			game->exit_check++;
+		return;
     }
 	if (map_copy[y][x] == 'C')
 		game->collect_check++;
-	if (map_copy[y][x] != '1')
+	if (map_copy[y][x] == 'C' || map_copy[y][x] == '0')
 		map_copy[y][x] = 'F';
 	flood_fill(game, x + 1, y);
 	flood_fill(game, x - 1, y);

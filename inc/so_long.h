@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:24:46 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/17 12:17:58 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/19 10:13:39 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@
 # define PLAYER_RIGHT_2 "./textures/SANTA_RIGHT_2.xpm"
 # define PLAYER_RIGHT_3 "./textures/SANTA_RIGHT_3.xpm"
 # define PLAYER_RIGHT_4 "./textures/SANTA_RIGHT_4.xpm"
+# define GRINCH_1 "./textures/GRINCH_1.xpm"
+# define GRINCH_2 "./textures/GRINCH_2.xpm"
+# define GRINCH_3 "./textures/GRINCH_3.xpm"
+# define GRINCH_4 "./textures/GRINCH_4.xpm"
+# define GRINCH_5 "./textures/GRINCH_5.xpm"
 
 typedef struct s_point
 {
@@ -82,6 +87,7 @@ typedef struct s_game
 	int		exit_check;
 	int		santa_counter;
 	int		gift_counter;
+	int		grinch_counter;
 
     t_point	player_position;
 	t_point	coordinates;
@@ -112,6 +118,7 @@ void	start_game(t_game *game);
 int	ft_quit_game(t_game *game);
 void	set_texture(t_game *game, char *texture_dir, int y, int x);
 void	update_exit_texture(t_game *game);
+void	update_grinch_texture(t_game *game);
 int	key_handler(int key, t_game *game);
 void	move_left(t_game *game);
 void	move_right(t_game *game);
