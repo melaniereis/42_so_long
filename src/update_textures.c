@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_game.c                                       :+:      :+:    :+:   */
+/*   update_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/13 17:08:58 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/20 13:20:02 by meferraz         ###   ########.fr       */
+/*   Created: 2024/12/20 09:16:34 by meferraz          #+#    #+#             */
+/*   Updated: 2024/12/20 13:15:18 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-static void	display_map(t_game *game);
-
-void	start_game(t_game *game)
-{
-	if (game->mlx_ptr == NULL)
-		return ;
-	game->win_ptr = mlx_new_window(game->mlx_ptr,
-			(game->columns - 1) * BITS, game->rows * BITS, "so_long");
-	if (game->win_ptr == NULL)
-		return ;
-	display_map (game);
-	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, &key_handler, game);
-	mlx_hook(game->win_ptr, DestroyNotify, StructureNotifyMask,
-		&ft_quit_game, game);
-	mlx_loop(game->mlx_ptr);
-}
-
-static void	display_map(t_game *game)
+void	update_exit_texture(t_game *game)
 {
 	game->coordinates.y = 0;
 	while (game->coordinates.y < game->rows)
@@ -37,7 +20,9 @@ static void	display_map(t_game *game)
 		game->coordinates.x = 0;
 		while (game->coordinates.x < game->columns)
 		{
-			display_textures(game, game->coordinates.y, game->coordinates.x);
+			if (game->map[game->coordinates.y][game->coordinates.x] == 'E')
+				set_texture(game, EXIT_SANTA, game->coordinates.y * BITS,
+					game->coordinates.x * BITS);
 			game->coordinates.x += 1;
 		}
 		game->coordinates.y += 1;

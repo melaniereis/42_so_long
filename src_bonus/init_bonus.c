@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:32:43 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/20 13:11:13 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/20 12:12:28 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 static void	init_game(t_game *game);
 static void	init_window(t_game *game);
@@ -43,6 +43,9 @@ static void	init_game(t_game *game)
 	game->player_position.y = 0;
 	game->coordinates.x = 0;
 	game->coordinates.y = 0;
+	game->santa_counter = 1;
+	game->gift_counter = 1;
+	game->grinch_counter = 1;
 }
 
 static void	init_window(t_game *game)

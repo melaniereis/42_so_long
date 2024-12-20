@@ -41,10 +41,10 @@ SPARKLES = ✨
 # Directory structure
 BUILD_PATH = .build
 SRC_PATH = src
-UTIL_PATH = utils
 BONUS_PATH = src_bonus
 INC_PATH = inc
 HEADERS = ${INC_PATH}/so_long.h
+HEADERS += ${INC_PATH}/so_long_bonus.h
 
 LIBFT_PATH = libs/libft
 LIBFT_ARC = ${LIBFT_PATH}/libft.a
@@ -52,11 +52,21 @@ LIBFT_ARC = ${LIBFT_PATH}/libft.a
 MINILIBX_PATH = libs/minilibx-linux
 MINILIBX = ${MINILIBX_PATH}/libmlx_Linux.a
 
-# Source files for main library
+# Source files
 SRCS = ${addprefix ${SRC_PATH}/, main.c init.c start_game.c key_handler.c \
-		moves.c}
-SRCS += ${addprefix ${UTIL_PATH}/, map_utils.c map_validation.c \
-		map_validation_path.c quit_and_frees.c}
+		moves.c moves_utils.c display_textures.c set_player_texture.c \
+		update_textures.c map_utils.c map_validation.c \
+		map_validation_conditions.c map_validation_path.c quit_and_frees.c}
+
+# Source Bonus files
+SRCS_BONUS = ${addprefix ${BONUS_PATH}/, main_bonus.c init_bonus.c \
+		start_game_bonus.c key_handler_bonus.c moves_bonus.c \
+		moves_utils_bonus.c display_textures_bonus.c \
+		set_player_texture_bonus.c update_textures_bonus.c map_utils_bonus.c \
+		map_validation_bonus.c \
+		map_validation_conditions_bonus.c \
+		map_validation_path_bonus.c quit_and_frees_bonus.c}
+
 # Object files derived from source files
 OBJS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS:.c=.o}}}
 OBJS_BONUS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS_BONUS:.c=.o}}}
@@ -142,14 +152,11 @@ get_minilibx:
 
 
 
-##bonus: ${BUILD_PATH} ${OBJS} ${LIBFT_ARC}
-##	@printf "${CYAN}${DIM}Compiling main.c for test...${RESET}\n"
-##	@${CC} ${CCFLAGS} main.c ${OBJS} ${LDFLAGS} -o ${EXEC}
-##	@printf "${GREEN}${BOLD}${CHECK} Test executable compiled successfully!${RESET}\n"
-##	@printf "${YELLOW}${BOLD}Running test...${RESET}\n"
-##	@./${EXEC}
-##	@printf "${GREEN}${BOLD}${CHECK} Test completed!${RESET}\n"
-##	@${RM} ${EXEC}
+bonus: deps ${BUILD_PATH} ${OBJS_BONUS} ${LIBFT_ARC} ${MINILIBX}
+	@printf "${CYAN}${DIM}Compiling main_bonus.c for running the program...${RESET}\n"
+	@${CC} ${CCFLAGS} ${OBJS_BONUS} -o ${NAME} ${MLXFLAGS} ${LDFLAGS} 
+	@printf "${GREEN}${BOLD}${CHECK} so_long bonus executable compiled successfully!${RESET}\n"
+	@printf "${YELLOW}${BOLD}To run program type: ./so_long followed by the name of the map.${RESET}\n"
 
 ##  Norms Rules  ##
 
@@ -170,22 +177,6 @@ check_external_functions: all               # Check norms for mandatory sources
 	nm ./${NAME} | grep "U" | grep -v "__"
 	@printf "${GREEN}${BOLD}${CHECK} External functions check completed!${RESET}\n"
 
-##  Check for leaks  ##
-
-test_valgrind: ${NAME}
-	@printf "${YELLOW}${BOLD}Running tests with Valgrind...${RESET}\n"
-	@printf "\n${PURPLE}${BOLD}Testing file with Valgrind: ${NAME}${RESET}\n"
-	@VALGRIND_OUTPUT="$$(${VALGRIND} ${VALGRIND_FLAGS} ./${NAME} 2>&1)"
-	@if echo "$$VALGRIND_OUTPUT" | grep -q "definitely lost" || \
-		echo "$$VALGRIND_OUTPUT" | grep -q "indirectly lost" || \
-		echo "$$VALGRIND_OUTPUT" | grep -q "possibly lost" || \
-		echo "$$VALGRIND_OUTPUT" | grep -q "still reachable"; then \
-		printf "${RED}${BOLD}Memory leak detected!${RESET}\n"; \
-		echo "$$VALGRIND_OUTPUT" | grep -E "definitely|indirectly|possibly|still reachable"; \
-	else \
-		printf "${GREEN}${BOLD}No leaks detected.${RESET}\n"; \
-	fi
-
 ##  Cleaning Rules  ##
 
 clean:                       # Clean up object files and temporary build files 
@@ -198,7 +189,7 @@ fclean: clean               # Fully clean up by removing executables and build d
 	@${RM} ${NAME}
 	@${RM} ${BUILD_PATH}
 # @make fclean -C ${LIBFT_PATH}
-	@${RM} ${LIBFT_PATH}
+#@${RM} ${LIBFT_PATH}
 	@${RM} ${MINILIBX_PATH}
 	@printf "${GREEN}${BOLD}${CHECK} All files cleaned!${RESET}\n"
 

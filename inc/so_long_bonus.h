@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:24:46 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/20 13:24:04 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/20 13:36:27 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "../libs/libft/includes/libft.h"
 # include "../libs/minilibx-linux/mlx.h"
@@ -30,7 +30,34 @@
 # define EXIT "./textures/EXIT.xpm"
 # define EXIT_SANTA "./textures/EXIT_SANTA.xpm"
 # define GIFT_1 "./textures/GIFT_1.xpm"
+# define GIFT_2 "./textures/GIFT_2.xpm"
+# define GIFT_3 "./textures/GIFT_3.xpm"
+# define GIFT_4 "./textures/GIFT_4.xpm"
+# define GIFT_5 "./textures/GIFT_5.xpm"
+# define GIFT_6 "./textures/GIFT_6.xpm"
+# define GIFT_7 "./textures/GIFT_7.xpm"
+# define GIFT_8 "./textures/GIFT_8.xpm"
 # define PLAYER_FRONT_1 "./textures/SANTA_FRONT_1.xpm"
+# define PLAYER_FRONT_2 "./textures/SANTA_FRONT_2.xpm"
+# define PLAYER_FRONT_3 "./textures/SANTA_FRONT_3.xpm"
+# define PLAYER_FRONT_4 "./textures/SANTA_FRONT_4.xpm"
+# define PLAYER_BACK_1 "./textures/SANTA_BACK_1.xpm"
+# define PLAYER_BACK_2 "./textures/SANTA_BACK_2.xpm"
+# define PLAYER_BACK_3 "./textures/SANTA_BACK_3.xpm"
+# define PLAYER_BACK_4 "./textures/SANTA_BACK_4.xpm"
+# define PLAYER_LEFT_1 "./textures/SANTA_LEFT_1.xpm"
+# define PLAYER_LEFT_2 "./textures/SANTA_LEFT_2.xpm"
+# define PLAYER_LEFT_3 "./textures/SANTA_LEFT_3.xpm"
+# define PLAYER_LEFT_4 "./textures/SANTA_LEFT_4.xpm"
+# define PLAYER_RIGHT_1 "./textures/SANTA_RIGHT_1.xpm"
+# define PLAYER_RIGHT_2 "./textures/SANTA_RIGHT_2.xpm"
+# define PLAYER_RIGHT_3 "./textures/SANTA_RIGHT_3.xpm"
+# define PLAYER_RIGHT_4 "./textures/SANTA_RIGHT_4.xpm"
+# define GRINCH_1 "./textures/GRINCH_1.xpm"
+# define GRINCH_2 "./textures/GRINCH_2.xpm"
+# define GRINCH_3 "./textures/GRINCH_3.xpm"
+# define GRINCH_4 "./textures/GRINCH_4.xpm"
+# define GRINCH_5 "./textures/GRINCH_5.xpm"
 
 /* Structures */
 typedef struct s_point
@@ -60,6 +87,9 @@ typedef struct s_game
 	int		coin_bag;
 	int		collect_check;
 	int		exit_check;
+	int		santa_counter;
+	int		gift_counter;
+	int		grinch_counter;
 	t_point	player_position;
 	t_point	coordinates;
 	void	*mlx_ptr;
@@ -94,13 +124,14 @@ int		is_there_path(t_game *game);
 
 /* Texture handling */
 void	display_textures(t_game *game, int y, int x);
-void	set_player_texture(t_game *game, int y, int x);
+void	set_player_texture(t_game *game, int direction, int y, int x);
 void	set_texture(t_game *game, char *texture_dir, int y, int x);
 void	update_exit_texture(t_game *game);
+void	update_grinch_texture(t_game *game);
 
 /* Player movement */
 int		key_handler(int key, t_game *game);
-void	move_player(t_game *game, int dy, int dx);
+void	move_player(t_game *game, int direction, int dy, int dx);
 void	move_left(t_game *game);
 void	move_right(t_game *game);
 void	move_down(t_game *game);

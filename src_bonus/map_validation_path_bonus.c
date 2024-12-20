@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validation_path.c                              :+:      :+:    :+:   */
+/*   map_validation_path_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:38:34 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/19 16:58:05 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/20 12:13:18 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
+
 void	set_player_position(t_game *game);
 void	flood_fill(t_game *game, int x, int y);
 
@@ -18,11 +19,6 @@ int	is_there_path(t_game *game)
 {
 	set_player_position(game);
 	flood_fill(game, game->player_position.x, game->player_position.y);
-	for(int i = 0; i < game->rows -1; i++)
-	{
-		printf("%s\n", game->map_copy[i]);
-	}
-	printf("game->exit_check: %d\n", game->exit_check);
 	if (game->exit_check == 0 || game->collect_check != game->collectibles)
 		return (0);
 	return (1);
@@ -30,42 +26,41 @@ int	is_there_path(t_game *game)
 
 void	set_player_position(t_game *game)
 {
-	int x;
-    int y;
+	int	x;
+	int	y;
 
-    y = 0;
-    while (y < game->rows)
-    {
-        x = 0;
-        while (x < game->columns)
-        {
-            if (game->map[y][x] == 'P')
-            {
-                game->player_position.x = x;
-                game->player_position.y = y;
-                break;
-            }
-            x++;
-        }
-        y++;
-    }
+	y = 0;
+	while (y < game->rows)
+	{
+		x = 0;
+		while (x < game->columns)
+		{
+			if (game->map[y][x] == 'P')
+			{
+				game->player_position.x = x;
+				game->player_position.y = y;
+				break ;
+			}
+			x++;
+		}
+		y++;
+	}
 }
 
 void	flood_fill(t_game *game, int x, int y)
 {
-	char **map_copy;
+	char	**map_copy;
 
 	if (x < 0 || x >= game->columns || y < 0 || y >= game->rows)
-			return ;
+		return ;
 	map_copy = game->map_copy;
-	if (map_copy[y][x] == '1' || map_copy[y][x] == 'F'|| map_copy[y][x] == 'K')
+	if (map_copy[y][x] == '1' || map_copy[y][x] == 'F' || map_copy[y][x] == 'K')
 		return ;
 	if (map_copy[y][x] == 'E')
 	{
-		if (game->collect_check == game->collectibles)
-			game->exit_check++;
-		return;
-    }
+		game->exit_check++;
+		return ;
+	}
 	if (map_copy[y][x] == 'C')
 		game->collect_check++;
 	if (map_copy[y][x] == 'C' || map_copy[y][x] == '0')

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quit_and_frees.c                                   :+:      :+:    :+:   */
+/*   quit_and_frees_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 09:05:26 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/19 14:34:18 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/20 12:13:39 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 static void	free_map(char **map, t_game *game);
 static void	free_all(t_game *game);
@@ -20,7 +20,6 @@ int	ft_quit_game(t_game *game)
 	free_all(game);
 	exit(0);
 }
-
 
 static void	free_map(char **map, t_game *game)
 {
@@ -36,6 +35,7 @@ static void	free_map(char **map, t_game *game)
 	}
 	free(game->map);
 }
+
 static void	free_map_copy(char **map, t_game *game)
 {
 	int	i;

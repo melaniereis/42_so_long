@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_game.c                                       :+:      :+:    :+:   */
+/*   start_game_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 17:08:58 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/20 13:20:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/20 13:52:21 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
-static void	display_map(t_game *game);
+void	display_map(t_game *game);
+void	display_textures(t_game *game, int y, int x);
 
 void	start_game(t_game *game)
 {
@@ -29,7 +30,7 @@ void	start_game(t_game *game)
 	mlx_loop(game->mlx_ptr);
 }
 
-static void	display_map(t_game *game)
+void	display_map(t_game *game)
 {
 	game->coordinates.y = 0;
 	while (game->coordinates.y < game->rows)
