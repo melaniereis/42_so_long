@@ -2,6 +2,8 @@
 
 <div align="center">
 
+![Funny so_long GIF](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzhldnY0eHV2cTJidjN6cnF5Z3lubzllZnJlYzRidGJwYnV6eGw0eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GJpJJPfhcoDl0xOZXI/giphy.gif)
+
 Embark on **So_Long** - A thrilling 2D maze game where you gather items and seek the exit. Enhanced with bonus features but without global variables for a cleaner codebase.
 
 ![Project Status](https://img.shields.io/badge/Project-So_Long-blue?style=for-the-badge&logo=42)
